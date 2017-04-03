@@ -1,0 +1,84 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel = "stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<ul class = "nav nav-pills nav-justified">
+  <li><a href="/encrypt"> Encrypt  </a></li>
+  <li><a href="/decrypt"> Decrypt a message </a></li>
+  <li class = "active" ><a href="/"> Generate Keypair </a></li>
+</ul>
+<div>
+  <form action = "/getkey" method = "POST" id = "aForm" >
+
+    <h1> Tidbit #2: RSA Encryption </h1>
+    <div class = "form-group">
+     <p>Enter 1 prime number <input type = "text" name = "primeA" id = "prime1" required/></p>
+   </div>
+
+   <div class = "form-group">
+     <p>Enter another prime number <input type = "text" name = "primeB" id = "prime2" required/></p>
+     <p><input type = "submit" value = "submit" onclick = "return checkIsPrime()"/></p>
+</div>
+  </form>
+</div>
+<div>
+Your keys are:
+
+{{public}}
+
+(This isn't normally revealed):
+{{private}}
+
+
+</div>
+
+
+
+
+
+</html>
+<script type = "text/javascript">
+function checkIsPrime() {
+
+  var num1 = $("#prime1").val();
+
+  var num2 = $("#prime2").val();
+
+  var goodToGo = true
+  if (isPrime(num1) == false) {
+    alert("The number " + num1 + " isn't prime!");
+
+    goodToGo = false
+
+    }
+  if (isPrime(num2) == false) {
+    alert("The number " + num2 + " isn't prime!");
+
+    goodToGo = false
+  }
+
+  if (goodToGo == true) {
+    return true;
+
+  }
+  else {
+    return false;
+  }
+
+
+}
+
+function isPrime(n) {
+ if (isNaN(n) || !isFinite(n) || n%1 || n<2) return false;
+ var m=Math.sqrt(n);
+ for (var i=2;i<=m;i++) if (n%i==0) return false;
+ return true;
+}
+
+</script>
